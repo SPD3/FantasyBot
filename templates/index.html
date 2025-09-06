@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fantasy Player Tables</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 12px;
+            width: 22%;
+            float: left;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 4px 6px;
+            text-align: left;
+        }
+        th {
+            background-color: #eee;
+        }
+    </style>
+    <!-- Auto-refresh every 5 seconds -->
+    <meta http-equiv="refresh" content="5">
+</head>
+<body>
+    {% for table_name, table_data in data|dictsort %}
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="6">{{ table_name }}</th>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Team</th>
+                    <th>Bye</th>
+                    <th>Depth</th>
+                    <th>Proj</th>
+                    <th>Rank</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in table_data %}
+                    <tr>
+                        <td>{{ player.name }}</td>
+                        <td>{{ player.team }}</td>
+                        <td>{{ player.bye }}</td>
+                        <td>{{ '%.1f' % player.depth }}</td>
+                        <td>{{ player.projection }}</td>
+                        <td>{{ player.rank }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endfor %}
+</body>
+</html>
